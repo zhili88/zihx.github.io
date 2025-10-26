@@ -11,6 +11,7 @@
       background-color: #fafafa;
       color: #222;
       text-align: center;
+      scroll-behavior: smooth; /* 平滑滚动 */
     }
 
     header {
@@ -19,6 +20,7 @@
       border-bottom: 1px solid #ddd;
       position: sticky;
       top: 0;
+      z-index: 1000;
     }
 
     header h1 {
@@ -36,18 +38,35 @@
       text-decoration: none;
       color: #333;
       font-weight: 500;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
+    nav a.active {
+      color: #007acc; /* 高亮颜色，可改 */
       text-decoration: underline;
+    }
+
+    section {
+      padding: 80px 10%;
+      box-sizing: border-box;
+    }
+
+    #home {
+      background-color: #fafafa;
+    }
+
+    #projects {
+      background-color: #f0f0f0;
+    }
+
+    #contact {
+      background-color: #fafafa;
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
-      padding: 80px 10%;
-      box-sizing: border-box;
     }
 
     .project-card {
@@ -82,20 +101,58 @@
   <header>
     <h1>Zihx</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
   </header>
 
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to Zihx</h2>
+    <p>Creative projects and innovative designs.</p>
+  </section>
+
   <!-- Projects Section -->
-  <section class="gallery">
+  <section id="projects" class="gallery">
     <div class="project-card">
-      <img src="images/project1.jpg" alt="Project 1">
-    </div>
-    <div class="project-card">
-      <img src="images/project2.jpg" alt="Project 2">
+      <h3>Thigh-Mounted Phone Holder for Recumbent Bike</h3>
+      <!-- 以后可以在这里加图片和详细介绍 -->
+      <p>Coming soon...</p>
     </div>
   </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me at <a href="mailto:your@email.com">your@email.com</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Zihx. All rights reserved.
+  </footer>
+
+  <script>
+    // 导航滚动高亮
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
