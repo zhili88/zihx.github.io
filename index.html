@@ -3,156 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zihx — Creative Projects</title>
+  <title>Zihx Design</title>
   <style>
     body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
+      padding: 0;
       background-color: #fafafa;
-      color: #222;
-      text-align: center;
-      scroll-behavior: smooth; /* 平滑滚动 */
+      color: #333;
     }
 
     header {
-      padding: 20px 0;
       background-color: #fff;
       border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+      text-align: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8em;
-      font-weight: 600;
+      z-index: 10;
     }
 
     nav {
-      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 1.1rem;
     }
 
     nav a {
-      margin: 0 15px;
       text-decoration: none;
       color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
-    nav a.active {
-      color: #007acc; /* 高亮颜色 */
-      text-decoration: underline;
+    nav a:hover {
+      color: #007aff;
     }
 
-    section {
-      padding: 80px 10%;
-      box-sizing: border-box;
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
     }
 
-    #home {
-      background-color: #fafafa;
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
-    #projects {
-      background-color: #f0f0f0;
-    }
-
-    #contact {
-      background-color: #fafafa;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .project-card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      padding: 20px;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
-
-    .project-card img {
-      width: 100%;
-      border-radius: 10px;
+    p {
+      line-height: 1.7;
+      font-size: 1rem;
     }
 
     footer {
-      padding: 30px;
-      font-size: 0.9em;
-      color: #777;
-      background-color: #f8f8f8;
-      border-top: 1px solid #e0e0e0;
-      margin-top: 60px;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #ddd;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Zihx</h1>
     <nav>
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Home Section -->
-  <section id="home">
-    <h2>Welcome to Zihx</h2>
-    <p>Creative projects and innovative designs.</p>
-  </section>
+  <div class="container" id="about">
+    <h1>About Zihx</h1>
+    <p>
+      Zihx is a personal design brand focused on original, creative solutions.  
+      I look for small pain points in everyday life and try to solve them in the simplest, most direct way possible.  
+    </p>
+    <p>
+      Each design starts from real-life use, avoiding unnecessary complexity and aiming for that “just right” balance.  
+    </p>
+  </div>
 
-  <!-- Projects Section -->
-  <section id="projects" class="gallery">
-    <div class="project-card">
-      <h3>Thigh Bike Mount</h3>
-      <!-- 以后可以在这里加图片和详细介绍 -->
-      <p>Coming soon...</p>
-    </div>
-  </section>
+  <div class="container" id="projects">
+    <h1>Projects</h1>
+    <p>Thigh Bike Mount</p>
+  </div>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>You can reach me at <a href="mailto:your@email.com">your@email.com</a></p>
-  </section>
+  <div class="container" id="contact">
+    <h1>Contact</h1>
+    <p>
+      You can reach me via GitHub at  
+      <a href="https://github.com/zihx" target="_blank">github.com/zihx</a>
+    </p>
+  </div>
 
   <footer>
-    &copy; 2025 Zihx. All rights reserved.
+    © 2025 Zihx Design
   </footer>
-
-  <script>
-    // 导航滚动高亮
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
 </body>
 </html>
