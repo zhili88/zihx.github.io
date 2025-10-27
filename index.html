@@ -11,7 +11,6 @@
       background-color: #fafafa;
       color: #222;
       text-align: center;
-      scroll-behavior: smooth;
     }
 
     header {
@@ -39,6 +38,7 @@
       color: #333;
       font-weight: 500;
       transition: color 0.3s;
+      cursor: pointer;
     }
 
     nav a.active {
@@ -49,18 +49,18 @@
     section {
       padding: 80px 10%;
       box-sizing: border-box;
+      display: none; /* 默认隐藏 */
     }
 
-    #about {
-      background-color: #fafafa;
+    section.active {
+      display: block; /* 当前显示 */
     }
 
-    #projects {
-      background-color: #f0f0f0;
-    }
-
-    #contact {
-      background-color: #fafafa;
+    #about p {
+      max-width: 600px; /* 限制每行长度大约20个单词 */
+      margin: 15px auto;
+      line-height: 1.6;
+      text-align: left;
     }
 
     .gallery {
@@ -82,11 +82,6 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
-    .project-card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
     footer {
       padding: 30px;
       font-size: 0.9em;
@@ -101,17 +96,17 @@
   <header>
     <h1>Zihx</h1>
     <nav>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a class="nav-link active" data-target="about">About</a>
+      <a class="nav-link" data-target="projects">Projects</a>
+      <a class="nav-link" data-target="contact">Contact</a>
     </nav>
   </header>
 
   <!-- About Section -->
-  <section id="about">
+  <section id="about" class="active">
     <h2>About Zihx</h2>
     <p>
-      Zihx is a personal design brand focused on original, creative solutions.  
+      Zihx is a personal design brand focused on original, creative solutions.
       I look for small pain points in everyday life and try to solve them in the simplest, most direct way possible.
     </p>
     <p>
@@ -120,10 +115,13 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="gallery">
-    <div class="project-card">
-      <h3>Thigh Bike Mount</h3>
-      <p>Coming soon...</p>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="gallery">
+      <div class="project-card">
+        <h3>Thigh Bike Mount</h3>
+        <p>Coming soon...</p>
+      </div>
     </div>
   </section>
 
@@ -138,24 +136,18 @@
   </footer>
 
   <script>
-    // 导航滚动高亮
-    const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section");
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        // 移除所有active状态
+        navLinks.forEach(l => l.classList.remove("active"));
+        sections.forEach(s => s.classList.remove("active"));
 
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
-        }
+        // 激活当前
+        link.classList.add("active");
+        document.getElementById(link.dataset.target).classList.add("active");
       });
     });
   </script>
